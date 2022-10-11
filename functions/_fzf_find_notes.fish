@@ -1,4 +1,4 @@
-function fzf_find_notes
+function _fzf_find_notes
   set -l path "/Users/mireknguyen/Library/Mobile Documents/com~apple~CloudDocs/Notes";
 
   export FZF_DEFAULT_OPTS='--cycle --preview-window=right,40% --height 30% --border rounded --color='bg:#4B4B4B,bg+:#3F3F3F,info:#BDBB72,border:#6B6B6B,spinner:#98BC99,hl:#719872,fg:#D9D9D9,header:#719872,fg+:#D9D9D9,pointer:#E12672,marker:#E17899,prompt:#98BEDE,hl+:#98BC99'';
