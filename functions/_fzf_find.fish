@@ -1,12 +1,9 @@
 function _fzf_find
   set -l color $(string join '' \
-    "bg:#4B4B4B,bg+:#3F3F3F,"\
-    "fg:#D9D9D9,fg+:#D9D9D9,"\
-    "hl:#719872,hl+:#98BC99,"\
-    "info:#BDBB72,border:#6B6B6B,"\
-    "spinner:#98BC99,header:#719872,"\
-    "pointer:#E12672,marker:#E17899,"\
-    "prompt:#98BEDE")
+    "fg:#f8f8f2,bg:#282a36,hl:#bd93f9,"\
+    "fg+:#f8f8f2,bg+:#44475a,hl+:#bd93f9,"\
+    "info:#ffb86c,prompt:#50fa7b,pointer:#ff79c6,"\
+    "marker:#ff79c6,spinner:#ffb86c,header:#6272a4")
   set -l preview \
     "bat --style=plain --theme gruvbox-dark --color=always "$HOME"/{} 2>/dev/null \
     || exa --icons --oneline -g "$HOME"/{} 2>/dev/null"

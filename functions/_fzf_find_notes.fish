@@ -5,13 +5,10 @@ function _fzf_find_notes
     return 1;
   end
   set -l color $(string join '' \
-    "bg:#4B4B4B,bg+:#3F3F3F,"\
-    "fg:#D9D9D9,fg+:#D9D9D9,"\
-    "hl:#719872,hl+:#98BC99,"\
-    "info:#BDBB72,border:#6B6B6B,"\
-    "spinner:#98BC99,header:#719872,"\
-    "pointer:#E12672,marker:#E17899,"\
-    "prompt:#98BEDE")
+    "fg:#f8f8f2,bg:#282a36,hl:#bd93f9,"\
+    "fg+:#f8f8f2,bg+:#44475a,hl+:#bd93f9,"\
+    "info:#ffb86c,prompt:#50fa7b,pointer:#ff79c6,"\
+    "marker:#ff79c6,spinner:#ffb86c,header:#6272a4")
   set -l preview \
     "tail -n +(echo {} | cut -d':' -f2) < (echo {} | cut -d':' -f1)"
   set -l number $(echo $(echo "$path" | awk -F'/' '{print NF}') + 1 | bc);
