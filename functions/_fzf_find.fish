@@ -9,7 +9,7 @@ function _fzf_find
   #   || exa --icons --oneline -g "$HOME"/{} 2>/dev/null"
   set -l preview ""
   set -l fzf "$(\
-    fd --base-directory="$HOME" --strip-cwd-prefix -H -t f -t d \
+    fd --base-directory="$HOME" --ignore-file="$HOME/.fdignore" --strip-cwd-prefix -H -t f -t d \
     | fzf -e --preview="$preview" --cycle --preview-window=right,40% --height 30% --border rounded --color="$color" \
   )";
   if [ "$fzf" = "" ]
