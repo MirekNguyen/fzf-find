@@ -25,7 +25,7 @@ function _fzf_find_notes
   set -l line $(echo "$fzf" | cut -d':' -f2,2);
   if test [[ which nvim ]]
     cd "$(dirname "$fzf")";
-    nvim +"$line" "$file_path";
+    nvim +"$line" "$file_path" -c 'normal zt';
   else
     "$EDITOR" "$file_path";
   end
