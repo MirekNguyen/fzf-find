@@ -12,7 +12,7 @@ function _fzf_find
     commandline --function repaint;
     return 0;
   end
-  set -l fzf "/$HOME/$fzf";
+  set -l fzf "$fish_fzf_find_scope/$fzf";
   if [ -f "$fzf" ];
     cd "$(dirname "$fzf")";
     "$EDITOR" "$fzf";
