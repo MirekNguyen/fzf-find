@@ -6,7 +6,7 @@ function _fzf_find
     "marker:#ff79c6,spinner:#ffb86c,header:#6272a4")
   set -l fzf "$(\
     fd --base-directory="$fish_fzf_find_scope" --ignore-file="$fish_fzf_find_ignore_file" --strip-cwd-prefix -H -t f -t d \
-    | fzf -e --preview="$fish_fzf_find_preview" --cycle --preview-window="$fish_fzf_find_notes_preview" --height 30% --border rounded --color="$color" \
+    | fzf -e --preview="$fish_fzf_find_preview" --cycle --preview-window="$fish_fzf_find_preview" --height 30% --border rounded --color="$color" \
   )";
   if [ "$fzf" = "" ]
     commandline --function repaint;
