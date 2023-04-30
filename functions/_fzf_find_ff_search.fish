@@ -16,9 +16,9 @@ function _fzf_find_ff_search
     "marker:#ff79c6,spinner:#ffb86c,header:#6272a4")
   set -l number $(echo $(echo "$search_path" | awk -F'/' '{print NF}') + 1 | bc);
   set -l fzf \
-    $(rg -n -H . "$search_path" \
-    | fzf -e --delimiter / --with-nth $number.. --preview="$fish_fzf_find_notes_preview" \
-      --cycle --preview-window="$fish_fzf_find_notes_preview_window" --height 30% --border rounded --color="$color");
+    $(rg -n --ignore-file "$ff_search_ignore" -H . "$search_path" \
+    | fzf -e --delimiter / --with-nth $number.. --preview="$ff_search_preview" \
+      --cycle --preview-window="$ff_search_preview_window" --height 30% --border rounded --color="$color");
   if [ "$fzf" = "" ]
     commandline --function repaint;
     return 0;

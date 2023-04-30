@@ -5,14 +5,14 @@ function _fzf_find
     "info:#ffb86c,prompt:#50fa7b,pointer:#ff79c6,"\
     "marker:#ff79c6,spinner:#ffb86c,header:#6272a4")
   set -l fzf "$(\
-    fd -I --base-directory="$fish_fzf_find_scope" --ignore-file="$fish_fzf_find_ignore_file" --strip-cwd-prefix -H -t f -t d \
-    | fzf -e --preview="$fish_fzf_find_preview" --cycle --preview-window="$fish_fzf_find_preview" --height 30% --border rounded --color="$color" \
+    fd -I --base-directory="$fzf_find_scope" --ignore-file="$fzf_find_ignore_file" --strip-cwd-prefix -H -t f -t d \
+    | fzf -e --preview="$fzf_find_preview" --cycle --preview-window="$fzf_find_preview" --height 30% --border rounded --color="$color" \
   )";
   if [ "$fzf" = "" ]
     commandline --function repaint;
     return 0;
   end
-  set -l fzf "$fish_fzf_find_scope/$fzf";
+  set -l fzf "$fzf_find_scope/$fzf";
   if [ -f "$fzf" ];
     cd "$(dirname "$fzf")";
     "$EDITOR" "$fzf";

@@ -1,5 +1,5 @@
-function _fzf_find_notes
-  if ! [ -d "$fish_fzf_find_notes_scope" ]
+function _fzf_find_search
+  if ! [ -d "$fzf_find_search_scope" ]
     commandline --function repaint;
     return 1;
   end
@@ -8,11 +8,11 @@ function _fzf_find_notes
     "fg+:#f8f8f2,bg+:#44475a,hl+:#bd93f9,"\
     "info:#ffb86c,prompt:#50fa7b,pointer:#ff79c6,"\
     "marker:#ff79c6,spinner:#ffb86c,header:#6272a4")
-  set -l number $(echo $(echo "$fish_fzf_find_notes_scope" | awk -F'/' '{print NF}') + 1 | bc);
+  set -l number $(echo $(echo "$fzf_find_search_scope" | awk -F'/' '{print NF}') + 1 | bc);
   set -l fzf \
-    $(rg -n -H . "$fish_fzf_find_notes_scope" \
-    | fzf -e --delimiter / --with-nth $number.. --preview="$fish_fzf_find_notes_preview" \
-      --cycle --preview-window="$fish_fzf_find_notes_preview_window" --height 30% --border rounded --color="$color");
+    $(rg -n -H . "$fzf_find_search_scope" \
+    | fzf -e --delimiter / --with-nth $number.. --preview="$fzf_find_search_preview" \
+      --cycle --preview-window="$fzf_find_search_preview_window" --height 30% --border rounded --color="$color");
   if [ "$fzf" = "" ]
     commandline --function repaint;
     return 0;
