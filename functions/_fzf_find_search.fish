@@ -10,7 +10,7 @@ function _fzf_find_search
     "marker:#ff79c6,spinner:#ffb86c,header:#6272a4")
   set -l number $(echo $(echo "$fzf_find_search_scope" | awk -F'/' '{print NF}') + 1 | bc);
   set -l fzf \
-    $(rg -n -H . "$fzf_find_search_scope" \
+    $(rg -n --ignore-file "$fzf_find_ignore" -H . "$fzf_find_search_scope" \
     | fzf -e --delimiter / --with-nth $number.. --preview="$fzf_find_search_preview" \
       --cycle --preview-window="$fzf_find_search_preview_window" --height 30% --border rounded --color="$color");
   if [ "$fzf" = "" ]
