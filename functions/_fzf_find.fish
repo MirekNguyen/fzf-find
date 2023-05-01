@@ -2,13 +2,13 @@ function _fzf_find
   set -l fzf_base_dir "$(pwd)"
   set -l swap_path false
   if [ (count $argv) -eq 1 ]
-    if [ ! -e $argv[1] ]
+    if [ ! -e "$argv[1]" ]
       echo "Provided path doesn't exist"
       return 1;
     end
     set fzf_base_dir "$argv[1]"
   else if [ (count $argv) -eq 2 ]
-    if [ ! -e $argv[1] ] || [ ! -e $argv[2] ]
+    if [ ! -e "$argv[1]" ] || [ ! -e "$argv[2]" ]
       echo "Provided path doesn't exist"
       return 1;
     end
