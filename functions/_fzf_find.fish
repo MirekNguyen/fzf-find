@@ -33,7 +33,6 @@ function _fzf_find
   else
     set fzf "$argv[1]/$fzf";
   end
-  echo "$fzf"
   if [ -f "$fzf" ];
     cd "$(dirname "$fzf")";
     "$EDITOR" "$fzf";
