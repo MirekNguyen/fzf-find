@@ -12,7 +12,7 @@ function _fzf_find_search
       echo "Provided path doesn't exist"
       return 1;
     end
-    set fzf_base_dir "$argv[2]"
+    set fzf_base_dir "$argv[1]"
     set swap_path true
   end
   set -l color $(string join '' \
@@ -33,7 +33,7 @@ function _fzf_find_search
   set -l line $(echo "$fzf" | cut -d':' -f2,2);
   if test [[ which nvim ]]
     if [ $swap_path = 'true' ]
-      set file_path "$(string replace $argv[2] $argv[1] $file_path)"
+      set file_path "$(string replace $argv[1] $argv[2] $file_path)"
     end
     cd "$(dirname "$file_path")";
     nvim +"$line" "$file_path" -c 'normal zt';
