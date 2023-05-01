@@ -32,7 +32,9 @@ function _fzf_find_search
   set -l file_path $(echo "$fzf" | cut -d':' -f1,1);
   set -l line $(echo "$fzf" | cut -d':' -f2,2);
   if test [[ which nvim ]]
-    set file_path "$(string replace $argv[2] $argv[1] $file_path)"
+    if [ $swap_path = 'true' ]
+      set file_path "$(string replace $argv[2] $argv[1] $file_path)"
+    end
     cd "$(dirname "$file_path")";
     nvim +"$line" "$file_path" -c 'normal zt';
   else

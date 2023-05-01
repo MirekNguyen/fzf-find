@@ -45,7 +45,6 @@ function _fzf_find
     commandline --function repaint;
     return 0;
   end
-  echo "$fzf";
   echo "Path is not a file or a directory";
   commandline --function repaint;
   return 1;
