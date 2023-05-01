@@ -12,7 +12,7 @@ function _fzf_find
       echo "Provided path doesn't exist"
       return 1;
     end
-    set fzf_base_dir "$argv[1]"
+    set fzf_base_dir "$argv[2]"
     set swap_path true
   end
   set -l color $(string join '' \
@@ -31,7 +31,7 @@ function _fzf_find
   if [ $swap_path = 'false' ]
     set fzf "$fzf_base_dir/$fzf";
   else
-    set fzf "$argv[2]/$fzf";
+    set fzf "$argv[1]/$fzf";
   end
   echo "$fzf"
   if [ -f "$fzf" ];
