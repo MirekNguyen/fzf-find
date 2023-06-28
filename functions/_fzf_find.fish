@@ -35,7 +35,24 @@ function _fzf_find
   end
   if [ -f "$fzf" ];
     cd "$(dirname "$fzf")";
-    "$EDITOR" "$fzf";
+    switch $argv[(count $argv)]
+      case '--mime'
+        echo "Mime flag is triggered";
+    end
+    set extension (string match -r '\.([^.]+)$' "$fzf" --groups);
+    switch "$extension"
+      case mkv mp4
+        nohup mpv --player-operation-mode=pseudo-gui "$fzf" >/dev/null 2>&1 &;
+        disown;
+      case pdf
+        nohup zathura -- "$fzf" >/dev/null 2>&1 &;
+        disown;
+      case odt ods odp sxw doc docx xls xlsx ppt pptx
+        nohup libreoffice "$fzf" >/dev/null 2>&1 &;
+        disown;
+      case '*'
+        "$EDITOR" "$fzf";
+    end
     commandline --function repaint;
     return 0;
   end
