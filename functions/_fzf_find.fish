@@ -48,7 +48,7 @@ function _fzf_find
         nohup zathura -- "$fzf" >/dev/null 2>&1 &;
         disown;
       case odt ods odp sxw doc docx xls xlsx ppt pptx
-        nohup libreoffice "$fzf" >/dev/null 2>&1 &;
+        nohup soffice "$fzf" >/dev/null 2>&1 &;
         disown;
       case '*'
         "$EDITOR" "$fzf";
