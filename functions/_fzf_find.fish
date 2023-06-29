@@ -35,10 +35,6 @@ function _fzf_find
   end
   if [ -f "$fzf" ];
     cd "$(dirname "$fzf")";
-    switch $argv[(count $argv)]
-      case '--mime'
-        echo "Mime flag is triggered";
-    end
     set extension (string match -r '\.([^.]+)$' "$fzf" --groups);
     switch "$extension"
       case mkv mp4
