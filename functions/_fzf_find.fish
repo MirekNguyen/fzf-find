@@ -1,6 +1,9 @@
 function _fzf_find
   set -l fzf_base_dir "$(pwd)"
   set -l swap_path false
+  argparse --name=_fzf_find 'noignorefile' -- $argv
+  or return
+
   if [ (count $argv) -eq 1 ]
     if [ ! -e "$argv[1]" ]
       echo "Provided path doesn't exist"
@@ -20,10 +23,19 @@ function _fzf_find
     "fg+:#f8f8f2,bg+:#44475a,hl+:#bd93f9,"\
     "info:#ffb86c,prompt:#50fa7b,pointer:#ff79c6,"\
     "marker:#ff79c6,spinner:#ffb86c,header:#6272a4")
-  set -l fzf "$(\
+
+  if [ "$_flag_noignorefile" != "" ]
+    set fzf "$(\
+    fd -I --base-directory="$fzf_base_dir" --strip-cwd-prefix -H -t f -t d \
+    | fzf -e --preview="$fzf_find_preview" --cycle --preview-window="$fzf_find_preview" --height 30% --border rounded --color="$color" \
+    )";
+  else
+    set fzf "$(\
     fd -I --base-directory="$fzf_base_dir" --ignore-file="$fzf_find_ignore" --strip-cwd-prefix -H -t f -t d \
     | fzf -e --preview="$fzf_find_preview" --cycle --preview-window="$fzf_find_preview" --height 30% --border rounded --color="$color" \
-  )";
+    )";
+  end
+
   if [ "$fzf" = "" ]
     commandline --function repaint;
     return 0;
