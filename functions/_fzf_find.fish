@@ -18,21 +18,15 @@ function _fzf_find
     set fzf_base_dir "$argv[1]"
     set swap_path true
   end
-  set -l color $(string join '' \
-    "fg:#f8f8f2,bg:#282a36,hl:#bd93f9,"\
-    "fg+:#f8f8f2,bg+:#44475a,hl+:#bd93f9,"\
-    "info:#ffb86c,prompt:#50fa7b,pointer:#ff79c6,"\
-    "marker:#ff79c6,spinner:#ffb86c,header:#6272a4")
-
   if [ "$_flag_noignorefile" != "" ]
     set fzf "$(\
     fd -I --base-directory="$fzf_base_dir" --strip-cwd-prefix -H -t f -t d \
-    | fzf -e --preview="$fzf_find_preview" --cycle --preview-window="$fzf_find_preview" --height 30% --border rounded --color="$color" \
+    | fzf -e --preview="$fzf_find_preview" --cycle --preview-window="$fzf_find_preview" --height 30% --border rounded \
     )";
   else
     set fzf "$(\
     fd -I --base-directory="$fzf_base_dir" --ignore-file="$fzf_find_ignore" --strip-cwd-prefix -H -t f -t d \
-    | fzf -e --preview="$fzf_find_preview" --cycle --preview-window="$fzf_find_preview" --height 30% --border rounded --color="$color" \
+    | fzf -e --preview="$fzf_find_preview" --cycle --preview-window="$fzf_find_preview" --height 30% --border rounded \
     )";
   end
 
