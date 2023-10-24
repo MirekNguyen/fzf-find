@@ -15,16 +15,11 @@ function _fzf_find_search
     set fzf_base_dir "$argv[1]"
     set swap_path true
   end
-  set -l color $(string join '' \
-    "fg:#f8f8f2,bg:#282a36,hl:#bd93f9,"\
-    "fg+:#f8f8f2,bg+:#44475a,hl+:#bd93f9,"\
-    "info:#ffb86c,prompt:#50fa7b,pointer:#ff79c6,"\
-    "marker:#ff79c6,spinner:#ffb86c,header:#6272a4")
   set -l number $(echo $(echo "$fzf_base_dir" | awk -F'/' '{print NF}') + 1 | bc);
   set -l fzf \
     $(rg -n --ignore-file "$fzf_find_search_ignore" -H . "$fzf_base_dir" \
     | fzf -e --delimiter / --with-nth $number.. --preview="$fzf_find_search_preview" \
-      --cycle --preview-window="$fzf_find_search_preview_window" --height 30% --border rounded --color="$color");
+      --cycle --preview-window="$fzf_find_search_preview_window" --height 30% --border rounded);
   if [ "$fzf" = "" ]
     commandline --function repaint;
     return 0;
