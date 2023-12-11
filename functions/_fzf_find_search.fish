@@ -17,7 +17,7 @@ function _fzf_find_search
   end
   set -l number $(echo $(echo "$fzf_base_dir" | awk -F'/' '{print NF}') + 1 | bc);
   set -l fzf \
-    $(rg -x '^.*.{4,}' -n --ignore-file "$fzf_find_search_ignore" -H . "$fzf_base_dir" \
+    $(rg -x '^.*.{4,}' -n --ignore-file "$fzf_find_search_ignore" -H "$fzf_base_dir" \
     | fzf -e --delimiter / --with-nth $number.. --preview="$fzf_find_search_preview" \
       --cycle --preview-window="$fzf_find_search_preview_window" --height 30% --border rounded);
   if [ "$fzf" = "" ]
