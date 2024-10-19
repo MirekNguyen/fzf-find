@@ -20,12 +20,12 @@ function _fzf_find
   end
   if [ "$_flag_noignorefile" != "" ]
     set fzf "$(\
-    fd -I --base-directory="$fzf_base_dir" --strip-cwd-prefix -H -t f -t d \
+    fd -I -L --base-directory="$fzf_base_dir" --strip-cwd-prefix -H -t f -t d \
     | fzf -e --preview="$fzf_find_preview" --cycle --preview-window="$fzf_find_preview" --height 30% --border rounded \
     )";
   else
     set fzf "$(\
-    fd -I --base-directory="$fzf_base_dir" --ignore-file="$fzf_find_ignore" --strip-cwd-prefix -H -t f -t d \
+    fd -I -L --base-directory="$fzf_base_dir" --ignore-file="$fzf_find_ignore" --strip-cwd-prefix -H -t f -t d \
     | fzf -e --preview="$fzf_find_preview" --cycle --preview-window="$fzf_find_preview" --height 30% --border rounded \
     )";
   end
