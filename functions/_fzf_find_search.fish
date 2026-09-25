@@ -15,7 +15,7 @@ function _fzf_find_search
     set fzf_base_dir "$argv[1]"
     set swap_path true
   end
-  set -l number $(echo $(echo "$fzf_base_dir" | awk -F'/' '{print NF}') + 1 | bc);
+  set -l number (math (echo "$fzf_base_dir" | awk -F'/' '{print NF}') + 1);
   set -l fzf \
     $(rg -x '^.*.{4,}' -n --ignore-file "$fzf_find_search_ignore" -H "$fzf_base_dir" \
     | fzf -e --delimiter / --with-nth $number.. --preview="$fzf_find_search_preview" \
